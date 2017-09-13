@@ -6,8 +6,7 @@ that automatically update hidden <input> elements on selection.
 It currently only supports selecting a single image per instance.
 
 It is intended to be used in the WordPress backend, typically inside
-<form>...</form> elements, for example, custom meta boxes on edit post
-screens.
+form elements, for example, custom meta boxes on edit post screens.
 
 ### Installation
 
