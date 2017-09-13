@@ -87,5 +87,7 @@
 })(jQuery);
 
 jQuery(document).ready(function($) {
-    $(document).mediaPicker();
+    $(document).wp_media_picker({
+        selector: '.wp-media-picker'
+    })
 });

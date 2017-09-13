@@ -1,0 +1,17 @@
+{
+  "name": "wp-media-picker-jquery",
+  "homepage": "https://github.com/wp-orbit/wp-media-picker-jquery",
+  "authors": [
+    "Marty Eason <dev@zawntech.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
