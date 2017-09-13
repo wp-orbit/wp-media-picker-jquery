@@ -7,6 +7,12 @@ It currently only supports selecting single image per selector.
 
 The plugin converts a selector element into a hidden input field
 
+### Install
+
+```
+bower install wp-media-picker-jquery
+```
+
 ### Usage
 
 First, enqueue the javascript file in **admin_enqueue_scripts** so that it
