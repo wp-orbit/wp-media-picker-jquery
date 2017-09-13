@@ -1,22 +1,35 @@
 # WP Media Picker jQuery Plugin
 
-This jQuery plugin provides an easy way to insert wp.media pickers 
-into the WordPress backend.
+This jQuery plugin provides an easy way to generate WP Media frames 
+that automatically update hidden <input> elements on selection.
 
-It currently only supports selecting single image per selector.
+It currently only supports selecting a single image per instance.
 
-The plugin converts a selector element into a hidden input field
+It is intended to be used in the WordPress backend, typically inside
+<form>...</form> elements, for example, custom meta boxes on edit post
+screens.
 
-### Install
+### Installation
 
 ```
-bower install wp-media-picker-jquery
+bower install wp-media-picker-jquery --save
 ```
 
+Copy the javascript file to your plugin or theme.
+
+Enqueue the javascript file in **admin_enqueue_scripts** so that it
+is available in the backend.
+
+```php
+<?php
+add_action( 'admin_enqueue_scripts', function() {
+	$url = '/path/to/wp-media-picker-jquery.js';
+    wp_enqueue_script( 'wp-media-picker-jquery', $url, ['jquery'], null, true );
+});
+```
 ### Usage
 
-First, enqueue the javascript file in **admin_enqueue_scripts** so that it
-is available in the backend.
+
 
 Then wherever you need an image selector, use the following syntax:
 
