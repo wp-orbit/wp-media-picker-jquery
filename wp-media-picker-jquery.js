@@ -1,21 +1,21 @@
-(function($) {
+(function ($) {
 
-    $.fn.wp_media_picker = function(options) {
+    $.fn.wp_media_picker = function (options) {
 
         var self = this,
             defaults = {
                 selector: '.wp-media-picker'
             };
 
-        if ( 'undefined' !== typeof(options) ) {
-            $(options).each(function(key) {
+        if ('undefined' !== typeof(options)) {
+            $(options).each(function (key) {
                 defaults[key] = this;
             });
         }
 
         var $el = $(defaults.selector);
 
-        $($el).each(function() {
+        $($el).each(function () {
 
             var el = this,
                 id = $(el).data('id'),
@@ -33,7 +33,7 @@
                 preview = $(el).find('.img-preview'),
                 input = $(el).find('input[name=' + key + ']');
 
-            if ( 'undefined' === typeof(url) || url.length === 0 ) {
+            if ('undefined' === typeof(url) || url.length === 0) {
                 clear.hide();
             } else {
                 preview.html('<img src="' + url + '">');
@@ -41,17 +41,17 @@
 
             // WP Media Frame.
             var frame = new wp.media.view.MediaFrame.Select({
-                    title: 'Select image',
-                    multiple: false,
-                    library: {
-                        order: 'ASC',
-                        orderby: 'title',
-                        type: 'image'
-                    },
-                    button: {
-                        text: 'Select image'
-                    }
-                });
+                title: 'Select image',
+                multiple: false,
+                library: {
+                    order: 'ASC',
+                    orderby: 'title',
+                    type: 'image'
+                },
+                button: {
+                    text: 'Select image'
+                }
+            });
 
             // Initialize frame state.
             frame.state();
@@ -84,10 +84,6 @@
         });
     };
 
-})(jQuery);
+    $(document).wp_media_picker();
 
-jQuery(document).ready(function($) {
-    $(document).wp_media_picker({
-        selector: '.wp-media-picker'
-    })
-});
+})(jQuery);

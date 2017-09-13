@@ -1,12 +1,13 @@
 # WP Media Picker jQuery Plugin
 
 This jQuery plugin provides an easy way to generate WP Media frames 
-that automatically update hidden <input> elements on selection.
+that automatically update hidden &lt;input> elements on selection.
 
 It currently only supports selecting a single image per instance.
 
 It is intended to be used in the WordPress backend, typically inside
-form elements, for example, custom meta boxes on edit post screens.
+&lt;form> elements, for example, options pages or custom meta boxes on 
+edit post screens.
 
 ### Installation
 
@@ -28,36 +29,24 @@ add_action( 'admin_enqueue_scripts', function() {
 ```
 ### Usage
 
-
-
-Then wherever you need an image selector, use the following syntax:
+Use the following syntax wherever you want to generate an image selector:
 
 ```php
 <?php
+// An option or meta key, also sets the name attribute, via <input type="hidden" name="{$option_key}">
+$option_key = '_background_image';
 // Get the WordPress attachment ID.
-$image_id = get_post_meta( $post_id, $meta_key, true );
+$image_id = get_post_meta( $post_id, $option_key, true );
 // Get an image for an image preview.
 $image_url = wp_get_attachment_image_url( $image_id, 'medium' );
 ?>
 <div class="wp-media-picker" 
-     data-key="<?php echo esc_attr( $meta_key ); ?>" 
+     data-key="<?php echo esc_attr( $option_key ); ?>" 
      data-id="<?php echo $image_id; ?>" 
      data-url="<?php echo $image_url; ?>"></div>
 ```
 
+- '.wp-media-picker' is the selector 
 - data-key -- Sets the name="" attribute on the hidden form element.
 - data-id -- Preview image attachment ID. 
 - data-url --  URL to the preview image
-
-
-
-The plugin does not autoexecute, so we need to do so when scripts are ready: 
-```html
-<script>
-jQuery(document).ready(function($) {
-    $(document).wp_media_picker({
-        selector: '.wp-media-picker'
-    });
-});
-</script>
-```
