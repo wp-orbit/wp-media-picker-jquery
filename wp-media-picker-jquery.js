@@ -4,9 +4,20 @@
 
         var self = this,
             defaults = {
-                selector: '.wp-media-picker'
+                id: '',
+                url: '',
+                title: 'Select Image',
+                button_text: 'Select Image',
+                selector: '.wp-media-picker',
+                multiple: false,
+                library: {
+                    order: 'ASC',
+                    orderby: 'title',
+                    type: 'image'
+                }
             };
 
+        // Loop through and override defaults.
         if ('undefined' !== typeof(options)) {
             $(options).each(function (key) {
                 defaults[key] = this;
@@ -15,8 +26,8 @@
 
         var $el = $(defaults.selector);
 
-        $($el).each(function () {
-
+        $($el).each(function ()
+        {
             var el = this,
                 id = $(el).data('id'),
                 url = $(el).data('url'),
@@ -41,15 +52,11 @@
 
             // WP Media Frame.
             var frame = new wp.media.view.MediaFrame.Select({
-                title: 'Select image',
-                multiple: false,
-                library: {
-                    order: 'ASC',
-                    orderby: 'title',
-                    type: 'image'
-                },
+                title: defaults.title,
+                multiple: defaults.multiple,
+                library: defaults.library,
                 button: {
-                    text: 'Select image'
+                    text: defaults.button_text
                 }
             });
 
