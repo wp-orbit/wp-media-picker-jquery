@@ -8,12 +8,14 @@
                 url: '',
                 title: 'Select Image',
                 button_text: 'Select Image',
+                clear_text: 'Remove Image',
                 selector: '.wp-media-picker',
+                media_type: ['image'],
                 multiple: false,
                 library: {
                     order: 'ASC',
                     orderby: 'title',
-                    type: 'image'
+                    type: ['image']
                 }
             };
 
@@ -26,18 +28,21 @@
 
         var $el = $(defaults.selector);
 
-        $($el).each(function ()
-        {
+        $($el).each(function () {
             var el = this,
                 id = $(el).data('id'),
                 url = $(el).data('url'),
-                key = $(el).data('key');
+                key = $(el).data('key'),
+                button_text = $(el).data('buttonText') || defaults.button_text,
+                clear_text = $(el).data('clearText') || defaults.clear_text,
+                media_type = $(el).data('mediaType') || defaults.media_type,
+                title = $(el).data('title') || defaults.title;
 
             $(el).append('<div class="wp-media-picker"></div>');
             $(el).find('.wp-media-picker').append('<div class="img-preview"></div>');
             $(el).find('.wp-media-picker').append('<input type="hidden" name="' + key + '" value="' + id + '">');
-            $(el).find('.wp-media-picker').append('<button type="button" class="button select">Choose Image</button>');
-            $(el).find('.wp-media-picker').append('<button type="button" class="button clear">Clear Image</button>');
+            $(el).find('.wp-media-picker').append('<button type="button" class="button select">' + button_text + '</button>');
+            $(el).find('.wp-media-picker').append('<button type="button" class="button clear">' + clear_text + '</button>');
 
             var select = $(el).find('.select'),
                 clear = $(el).find('.clear'),
@@ -49,6 +54,10 @@
             } else {
                 preview.html('<img src="' + url + '">');
             }
+
+
+            var lib = defaults.library;
+            lib.type = media_type;
 
             // WP Media Frame.
             var frame = new wp.media.view.MediaFrame.Select({
